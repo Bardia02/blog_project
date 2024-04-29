@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-@&@exoq4s(j0j-z#t*1drz8l@p@&kjtlp=q#r@7_8hc)bpv=%t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -41,7 +41,14 @@ INSTALLED_APPS = [
 
     #MY APPS
     "home_app.apps.HomeAppConfig",
-    "account.apps.AccountConfig"
+    "account.apps.AccountConfig",
+    "blog.apps.BlogConfig",
+
+
+    ##############
+    "django_cleanup.apps.CleanupConfig",
+    "django_social_share",
+    "widget_tweaks"
 ]
 
 MIDDLEWARE = [
@@ -68,6 +75,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "context_processors.context_processors.recent_article"
             ],
         },
     },
@@ -122,10 +130,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-
+MEDIA_URL="media/"
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR,"assets")
 ]
+MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
